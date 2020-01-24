@@ -1,11 +1,15 @@
+#!/usr/bin/env python
+
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
+from dotenv import load_dotenv
 
+import os
+import sys
 import csv
 import time
-import sys
 
 def add_to_cart(driver, url, num):
     driver.get(url)
@@ -26,8 +30,10 @@ def mapping_csv_to_list(csv_file):
         new_list = list(reader)
     return new_list
 
-username = '<your username>'
-password = '<your password>'
+load_dotenv()
+
+username = os.getenv('USERNAME')
+password = os.getenv('PASSWORD')
 login_page = 'https://www.atomy.com:449/tw/Home/Account/Login'
 cart_page = 'http://www.atomy.com/tw/Home/Product/Cart'
 product_list = []
